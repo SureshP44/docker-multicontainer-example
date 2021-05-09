@@ -22,11 +22,11 @@ after_success:
 
 deploy:
   provider: elasticbeanstalk
-  region: "ap-south-1."
-  app: "multi-container"
-  env: "Multicontainer-env"
-  bucket_name: "elasticbeanstalk-ap-south-1-869463445131"
-  bucket_path: "multi-container"
+  region: ap-south-1
+  app: multi-container
+  env: Multicontainer-env
+  bucket_name: elasticbeanstalk-ap-south-1-869463445131
+  bucket_path: multi-container
   on:
     branch: master
   access_key_id: $AWSKEY_ID 
