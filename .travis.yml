@@ -19,4 +19,3 @@ after_success:
   - docker push suresha52/multicontainer-nginx 
   - docker push suresha52/multicontainer-server
   - docker push suresha52/multicontainer-client
-
