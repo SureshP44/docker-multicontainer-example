@@ -1,3 +1,4 @@
+language: generic
 sudo required
 services:
   -docker
@@ -6,7 +7,7 @@ before_install:
   - docker build -t suresha52/multiclienttest -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run suresha52/multiclienttest npm test -- --coverage
+  - docker run -e CI=true suresha52/multiclienttest npm test -- --coverage
 
 after_success:
   - docker build -t suresha52/multicontainer-worker ./worker
@@ -18,3 +19,7 @@ after_success:
   - docker push suresha52/multicontainer-nginx 
   - docker push suresha52/multicontainer-server
   - docker push suresha52/multicontainer-client
+
+deploy:
+  on:
+    branch: master
