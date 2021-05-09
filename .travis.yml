@@ -20,6 +20,3 @@ after_success:
   - docker push suresha52/multicontainer-server
   - docker push suresha52/multicontainer-client
 
-deploy:
-  on:
-    branch: master
