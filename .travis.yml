@@ -1,0 +1,20 @@
+sudo required
+services:
+  -docker
+
+before_install:
+  - docker build -t suresha52/multiclienttest -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run suresha52/multiclienttest npm test -- --coverage
+
+after_success:
+  - docker build -t suresha52/multicontainer-worker ./worker
+  - docker build -t suresha52/multicontainer-nginx ./nginx
+  - docker build -t suresha52/multicontainer-server ./server
+  - docker build -t suresha52/multicontainer-client ./client
+  - echo ${DOCKER_PWD} | docker login -u ${DOCKER_UNAME} --password-stdin
+  - docker push suresha52/multicontainer-worker
+  - docker push suresha52/multicontainer-nginx
+  - docker push suresha52/multicontainer-server
+  - docker push suresha52/multicontainer-client
